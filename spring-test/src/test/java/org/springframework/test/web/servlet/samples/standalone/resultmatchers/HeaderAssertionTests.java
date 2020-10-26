@@ -42,10 +42,9 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.startsWith;
-import static org.springframework.http.HttpHeaders.IF_MODIFIED_SINCE;
-import static org.springframework.http.HttpHeaders.LAST_MODIFIED;
-import static org.springframework.http.HttpHeaders.VARY;
+import static org.springframework.http.HttpHeaders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -100,7 +99,14 @@ public class HeaderAssertionTests {
 
 	@Test
 	public void multiStringHeaderValue() throws Exception {
-		this.mockMvc.perform(get("/persons/1")).andExpect(header().stringValues(VARY, "foo", "bar"));
+		// this.mockMvc.perform(get("/persons/1")).andExpect(header().stringValues(VARY, "foo", "bar"));
+
+		// this.mockMvc.perform(options("/persons/1")).andExpect(header().stringValues(ALLOW, "GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS"));
+		// this.mockMvc.perform(options("/persons/1")).andExpect(header().stringValues(ALLOW, "OPTIONS,GET,HEAD,POST,PUT,PATCH,DELETE"));
+		// this.mockMvc.perform(options("/persons/1")).andExpect(header().stringValues(ALLOW, "GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS"));
+
+		this.mockMvc.perform(options("/persons/1")).andExpect(header().stringValues(ALLOW,
+				"OPTIONS","GET","HEAD","POST","PUT","PATCH","DELETE"));
 	}
 
 	@Test

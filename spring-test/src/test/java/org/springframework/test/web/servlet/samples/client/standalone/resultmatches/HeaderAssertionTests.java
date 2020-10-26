@@ -31,8 +31,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.test.web.Person;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.test.web.servlet.client.MockMvcWebTestClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,9 +42,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.startsWith;
-import static org.springframework.http.HttpHeaders.IF_MODIFIED_SINCE;
-import static org.springframework.http.HttpHeaders.LAST_MODIFIED;
-import static org.springframework.http.HttpHeaders.VARY;
+import static org.springframework.http.HttpHeaders.*;
 
 /**
  * {@link MockMvcWebTestClient} equivalent of the MockMvc
@@ -267,6 +264,7 @@ public class HeaderAssertionTests {
 					.header("Vary", "foo", "bar")
 					.body(new Person("Jason"));
 		}
+
 	}
 
 }

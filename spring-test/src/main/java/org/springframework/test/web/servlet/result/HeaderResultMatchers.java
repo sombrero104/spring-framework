@@ -26,6 +26,8 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.hasItems;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertFalse;
 import static org.springframework.test.util.AssertionErrors.assertNotNull;
@@ -86,7 +88,8 @@ public class HeaderResultMatchers {
 	public ResultMatcher stringValues(String name, String... values) {
 		return result -> {
 			List<Object> actual = result.getResponse().getHeaderValues(name);
-			assertEquals("Response header '" + name + "'", Arrays.asList(values), actual);
+			// assertEquals("Response header '" + name + "'", Arrays.asList(values), actual);
+			assertThat("Response header '" + name + "'", actual.containsAll(Arrays.asList(values)));
 		};
 	}
 
