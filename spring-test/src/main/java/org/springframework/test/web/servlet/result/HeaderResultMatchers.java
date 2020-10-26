@@ -28,10 +28,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasItems;
-import static org.springframework.test.util.AssertionErrors.assertEquals;
-import static org.springframework.test.util.AssertionErrors.assertFalse;
-import static org.springframework.test.util.AssertionErrors.assertNotNull;
-import static org.springframework.test.util.AssertionErrors.assertTrue;
+import static org.springframework.test.util.AssertionErrors.*;
 
 /**
  * Factory for response header assertions.
@@ -88,8 +85,23 @@ public class HeaderResultMatchers {
 	public ResultMatcher stringValues(String name, String... values) {
 		return result -> {
 			List<Object> actual = result.getResponse().getHeaderValues(name);
-			// assertEquals("Response header '" + name + "'", Arrays.asList(values), actual);
-			assertThat("Response header '" + name + "'", actual.containsAll(Arrays.asList(values)));
+
+			System.out.println("##### name: " + name);
+			System.out.println("##### actual.size(): " + actual.size());
+
+			assertEquals("Response header '" + name + "'", Arrays.asList(values), actual);
+			// assertThat("Response header '" + name + "'", actual.containsAll(Arrays.asList(values)));
+		};
+	}
+
+	/**
+	 * sombrero104
+	 */
+	public ResultMatcher stringValuesAllow(String name, String... values) {
+		return result -> {
+			List<Object> actual = result.getResponse().getHeaderValues(name);
+			for (String value : values) {
+			}
 		};
 	}
 

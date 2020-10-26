@@ -45,6 +45,7 @@ import static org.hamcrest.Matchers.startsWith;
 import static org.springframework.http.HttpHeaders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -105,8 +106,46 @@ public class HeaderAssertionTests {
 		// this.mockMvc.perform(options("/persons/1")).andExpect(header().stringValues(ALLOW, "OPTIONS,GET,HEAD,POST,PUT,PATCH,DELETE"));
 		// this.mockMvc.perform(options("/persons/1")).andExpect(header().stringValues(ALLOW, "GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS"));
 
-		this.mockMvc.perform(options("/persons/1")).andExpect(header().stringValues(ALLOW,
-				"OPTIONS","GET","HEAD","POST","PUT","PATCH","DELETE"));
+		/*this.mockMvc.perform(options("/persons/1")).andExpect(header().stringValues(ALLOW,
+				"OPTIONS","GET","HEAD","POST","PUT","PATCH","DELETE"));*/
+
+		/*this.mockMvc.perform(get("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(VARY, "foo", "bar"));*/
+
+		/*this.mockMvc.perform(get("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(VARY, "bar", "foo"));*/
+
+		/*this.mockMvc.perform(options("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(ALLOW,
+				"GET","HEAD","POST","PUT","PATCH","DELETE","OPTIONS"));*/
+
+		/*this.mockMvc.perform(options("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(ALLOW, "GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS"));*/
+
+		/*this.mockMvc.perform(options("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(ALLOW, "OPTIONS,GET,HEAD,POST,PUT,PATCH,DELETE"));*/
+		/*this.mockMvc.perform(options("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(ALLOW,
+						"GET","HEAD","POST","PUT","PATCH","DELETE","OPTIONS"));*/
+
+		/*this.mockMvc.perform(options("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(HttpHeaders.ALLOW,
+					hasItems(containsString("GET"),
+							containsString("POST"),
+							containsString("HEAD"),
+							containsString("OPTIONS")
+				)));*/
+
+		this.mockMvc.perform(get("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(VARY, "foo"));
 	}
 
 	@Test
