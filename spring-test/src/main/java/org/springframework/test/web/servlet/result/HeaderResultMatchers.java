@@ -114,8 +114,8 @@ public class HeaderResultMatchers {
 	public ResultMatcher stringValuesAllow(String name, String... values) {
 		return result -> {
 			List<Object> actual = result.getResponse().getHeaderValues(name);
-			for (String value : values) {
-			}
+			/*for (String value : values) {
+			}*/
 		};
 	}
 

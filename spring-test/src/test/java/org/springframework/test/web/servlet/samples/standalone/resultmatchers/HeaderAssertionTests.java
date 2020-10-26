@@ -143,9 +143,35 @@ public class HeaderAssertionTests {
 							containsString("OPTIONS")
 				)));*/
 
-		this.mockMvc.perform(get("/persons/1"))
+		/*this.mockMvc.perform(get("/persons/1"))
 				.andDo(print())
-				.andExpect(header().stringValues(VARY, "foo"));
+				.andExpect(header().stringValues(VARY, "foo"));*/
+
+		/*this.mockMvc.perform(get("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(ACCEPT_ENCODING, "gzip"));*/
+
+		/*this.mockMvc.perform(options("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(HttpHeaders.ALLOW,
+						hasItems(containsString("GET"),
+								containsString("POST"),
+								containsString("HEAD"),
+								containsString("OPTIONS"))));
+		header().stringValuesAllow()*/
+		/*this.mockMvc.perform(options("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValuesAllow(HttpHeaders.ALLOW,
+						"GET", "POST"));*/
+
+
+		this.mockMvc.perform(options("/persons/1"))
+				.andDo(print())
+				.andExpect(header().stringValues(HttpHeaders.ALLOW,
+						"GET","HEAD","POST","PUT","PATCH","DELETE","OPTIONS"));
+
+
+
 	}
 
 	@Test
