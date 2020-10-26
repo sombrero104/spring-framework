@@ -96,6 +96,20 @@ public class HeaderResultMatchers {
 
 	/**
 	 * sombrero104
+	 *
+	 * VARY
+	 * 		actual  |  values
+	 * 		-----------------
+	 * 		"foo"   |   "foo"
+	 * 		"bar"	|   "bar"
+	 *
+	 * ALLOW
+	 * 		                 actual                      |            values
+	 * 	    -------------------------------------------------------------------------------
+	 * 	    "GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS"     |            "GET"
+	 * 	                                                 |            "HEAD"
+	 *                                                   |            "POST"
+	 *                                                   |            "PUT"
 	 */
 	public ResultMatcher stringValuesAllow(String name, String... values) {
 		return result -> {
