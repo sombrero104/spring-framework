@@ -169,7 +169,12 @@ public class HeaderAssertionTests {
 				.andDo(print())
 				.andExpect(header().stringValues(HttpHeaders.ALLOW,
 						"GET","HEAD","POST","PUT","PATCH","DELETE","OPTIONS"));
-
+		/*
+		CONTENT_TYPE
+		COOKIE
+		EXPIRES
+		ACCEPT_ENCODING
+		*/
 
 
 	}
